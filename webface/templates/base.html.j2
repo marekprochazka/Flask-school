@@ -8,59 +8,36 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{url_for('index')}}">Index</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="{{url_for('info')}}">Info</a>
+        <a class="nav-link" href="{{url_for('kvetak')}}">Květák</a>
+        <a class="nav-link" href="{{url_for('kapusta')}}">Kapusta</a>
+        <a class="nav-link" href="{{url_for('banany')}}">Banány</a>
+      </div>
+    </div>
+  </nav>
 
-<nav>
-  
-  <ul>
-    <li><a href="{{url_for('index')}}">Index</a></li>
-    <li><a href="{{url_for('info')}}">Info</a></li>
-    <li><a href="{{url_for('kvetak')}}">Květák</a></li>
-    <li><a href="{{url_for('kapusta')}}">Kapusta</a></li>
-    <li><a href="{{url_for('banany')}}">Banány</a></li>
-  </ul>
-
-  <p><img src="{{url_for('static', filename='fish.png')}}" alt="#"/>
-
-
-</nav>
-
-{% block obsah %}
-<main>
-
-<a href="/neco/nekde/tu.hmtl">TU</a>
-
-<p>{{pi}} Čem <strong>kdy povrchové:</strong> svou správě k vrak jiný 
-klimatizační, jí <em>pracuje</em> miliard 
-<code>představ s a mě nějaké slovo</code> 
-že některé s nemalé si bojovat. 
-<a href="https://www.spseol.cz">Božka</a>
-Listu minimum domech díky se různé nelichotivá, 
-den k myšlenkami. Ho mě pole náročný 360° 360°, 
-biologa obyčejné s hromadným mohli, 
-o potřeli navštěvovat prostředí.</p>
- 
- 3  4 &gt; 12  &amp;  &copy;  &#64; &#129396; 🙃 😐
-
-
-<pre><code>
-ahoj
-      nazdar
-    lolooooooooo                ooooo
-</code></pre>
-<p>
-ahoj
-      nazdar 
-    lolooooooooo                ooooo
-</p>
-
-
-<p>2*pi:{{2*pi}}  {{2**128}}</p>
-
-</main>
-{% endblock obsah%}
-
-<footer>
-  <p>KOnec</p>
+<div class="container">
+  {% block obsah %}
+  {% endblock obsah%}
+</div>
+<footer class="footer">
+  <div class="card">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
