@@ -3,7 +3,7 @@
     "mappings": "ACAA,AAAA,OAAO,CAAC;EACN,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,CAAC;EACT,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,WAAW,EAAE,IAAI;EACjB,gBAAgB,EAAE,OAAO;CAC1B",
     "sources": [
         "styles.scss",
-        "base.scss"
+        "scss/base.scss"
     ],
     "names": [],
     "file": "styles.css"

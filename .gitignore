@@ -4,5 +4,7 @@ venv
 *.css
 *.css.map
 
+.vscode
+
 !styles.css
 !styles.css.map
