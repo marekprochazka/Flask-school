@@ -32,3 +32,9 @@ def kapusta():
 def banany():
     title = "Banany"
     return render_template('banany.html.j2', title=title)
+
+
+@app.route('/moto-secret/')
+def moto():
+    title = "MOTO MOTO"
+    return render_template('moto.html.j2', title=title)
