@@ -19,8 +19,11 @@
         <a class="nav-link {% block active_kvetak %}{% endblock %}" href="{{url_for('kvetak')}}">Květák</a>
         <a class="nav-link {% block active_kapusta %}{% endblock %}" href="{{url_for('kapusta')}}">Kapusta</a>
         <a class="nav-link {% block active_banany %}{% endblock %}" href="{{url_for('banany')}}">Banány</a>
+        
       </div>
+      
     </div>
+    <p class="text-right white">{{session['user']}}</p>
   </nav>
 
 <div class="container">

@@ -19,6 +19,15 @@
     <p>
     Ligula mi netus nulla magna porta ac facilisi accumsan netus porta? Condimentum nec duis facilisis posuere proin, dis massa cubilia. Tellus nisi condimentum ipsum inceptos eget gravida neque. Gravida quisque sodales ad facilisis fusce aliquam ornare mi mus phasellus id aptent? Nostra dolor bibendum lacinia tellus ultrices, consequat risus. Cras risus pretium curae; mollis commodo id congue quis gravida lacinia fermentum.
     </p>
+<h3>Převraceč vět</h3>
+<form action="{{url_for('info')}}" method="POST">
+    <input class="form-control" type="text" name="text">
+    <input class="btn btn-primary mt-2" type="submit" value="Submit">
+</form>
+<h3 class="mt-2">
+{{reversed_text}}
+
+</h3>
 
 {% endblock obsah %}
 

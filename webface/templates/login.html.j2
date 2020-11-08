@@ -1,0 +1,20 @@
+{% extends "base.html.j2" %}
+
+
+
+
+{% block obsah %}
+<div class="container">
+<h2 class="text-center mt-5">login</h2>
+<div class="form-login mt-5 ">
+<form action="{{url_for('login')}}" method="POST">
+    <div class="form-group">
+    <label for="username">Jméno</label>
+    <input class="form-control" type="text" id="username" name="username"><br>
+    <input type="hidden" value="{{url}}" name="url" />
+    <input class="btn btn-primary" type="Submit" value="Submit">
+</div>
+</form>
+</div>
+</div>
+{% endblock obsah %}
