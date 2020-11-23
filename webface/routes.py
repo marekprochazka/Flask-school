@@ -1,7 +1,10 @@
 from . import app
-from flask import render_template, request, session, redirect, url_for
+from flask import render_template, request, session, redirect, url_for, flash
 import functools
-
+from pony.orm import db_session
+from .models import User
+from werkzeug.security import check_password_hash, generate_password_hash
+from uuid import uuid4
 
 def login_required(fun):
     @functools.wraps(fun)
@@ -14,19 +17,42 @@ def login_required(fun):
 
 
 @app.route('/login/', methods=["GET", "POST"])
+@db_session
 def login():
     if request.method == "POST":
-
-        session["user"] = request.form["username"]
         if request.form["username"] == "MOTOMOTO":
-            return redirect(url_for("moto"))
-        url = request.form["url"]
-        if url != "None":
-            return redirect(url)
-        return redirect(url_for("index"))
+                    return redirect(url_for("moto"))
+        user = User.get(login=request.form.get("username"))
+        if check_password_hash(user.password,request.form.get("password")):
+            session["user"] = user.login
+            url = request.form["url"]
+            if url != "None":
+                return redirect(url)
+            return redirect(url_for("index"))
+        
+        
     else:
         return render_template("login.html.j2", url=request.args.get("url"))
 
+@app.route('/register/', methods=["GET","POST"])
+@db_session
+def register():
+    if request.method == "POST":
+        name = request.form.get("name")
+        password = request.form.get("password")
+        password_again = request.form.get("password_again")
+        if name and password == password_again:
+            user = User(user_id=str(uuid4()),login=name,password=generate_password_hash(password))
+            flash("Succesfuly registered")
+            session["user"] = user.login
+            return redirect(url_for("index"))
+    return render_template("register.html.j2")
+
+
+@app.route('/logout/')
+def logout():
+    del session["user"]
+    return redirect(url_for("index"))
 
 @app.route('/')
 def index():

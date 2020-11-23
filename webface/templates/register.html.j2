@@ -1,0 +1,23 @@
+{% extends "base.html.j2" %}
+
+
+
+
+{% block obsah %}
+<div class="container">
+<h2 class="text-center mt-5">login</h2>
+<div class="form-login mt-5 ">
+<form action="{{url_for('register')}}" method="POST">
+    <div class="form-group">
+    <label for="name">Jméno</label>
+    <input class="form-control" type="text" id="name" name="name"><br>
+    <label for="password">Heslo</label>
+    <input class="form-control" type="password" id="password" name="password">
+    <label for="password_again">Heslo podruhé</label>
+    <input class="form-control" type="password" id="password_again" name="password_again">
+    <input class="btn btn-primary" type="Submit" value="Submit">
+</div>
+</form>
+</div>
+</div>
+{% endblock obsah %}

@@ -8,5 +8,7 @@ __pycache__/
 
 .vscode
 
+database.sqlite
+
 !styles.css
 !styles.css.map

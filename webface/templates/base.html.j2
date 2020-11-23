@@ -19,11 +19,14 @@
         <a class="nav-link {% block active_kvetak %}{% endblock %}" href="{{url_for('kvetak')}}">Květák</a>
         <a class="nav-link {% block active_kapusta %}{% endblock %}" href="{{url_for('kapusta')}}">Kapusta</a>
         <a class="nav-link {% block active_banany %}{% endblock %}" href="{{url_for('banany')}}">Banány</a>
+        <a class="nav-link {% block active_register %}{% endblock %}" href="{{url_for('register')}}">Registrace</a>
+
         
       </div>
       
     </div>
-    <p class="text-right white">{{session['user']}}</p>
+    <a class="text-right white no-hover">{{session['user']}}</a>
+    <a class="text-right white ml-20" href="{{url_for('logout')}}">Logout</a>
   </nav>
 
 <div class="container">
