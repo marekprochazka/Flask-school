@@ -137,14 +137,14 @@ def shortener():
         user = User.get(username=username) if username else None
         q = list(select(e for e in Shortener  
                                 if e.url == url ))
-        existing = q[0] if q else None
-        if existing:
+        existings = q if q else None
+        if existings:
             if user:
-                if existing.user == user:
-                    return render_template("shortener.html.j2",shortcut=existing.shortcut)
-                else:
-                    Shortener(shortened_id=str(uuid4()),shortcut=existing.shortcut,url=url,user=user)
-                    return render_template("shortener.html.j2",shortcut=existing.shortcut)
+                for existing in existings:
+                    if existing.user == user:
+                        return render_template("shortener.html.j2",shortcut=existing.shortcut)
+                Shortener(shortened_id=str(uuid4()),shortcut=existing.shortcut,url=url,user=user)
+                return render_template("shortener.html.j2",shortcut=existing.shortcut)
             else:
                     return render_template("shortener.html.j2",shortcut=existing.shortcut)
 
