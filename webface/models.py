@@ -10,13 +10,14 @@ db.bind(provider="sqlite", filename="./database.sqlite", create_db=True)
 
 class User(db.Entity):
     user_id = PrimaryKey(str) 
-    login = Required(str, unique=True)
+    username = Required(str, unique=True)
     password = Required(str)
     addresses = Set("Shortener")
 
 
 class Shortener(db.Entity):
-    shortcut = PrimaryKey(str)
+    shortened_id = PrimaryKey(str)
+    shortcut = Required(str)
     url = Required(str)
     user = Optional(User)
 

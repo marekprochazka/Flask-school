@@ -17,6 +17,16 @@
     <input class="btn btn-primary" type="Submit" value="Submit">
 </div>
 </form>
+<p>Ještě nemáte účet? <a href="{{url_for('register')}}">regsitrujte se</a></p>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 </div>
 </div>
 {% endblock obsah %}

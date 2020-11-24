@@ -1,0 +1,26 @@
+
+
+{% extends "base.html.j2" %}
+
+{% block active_shortener %}active{% endblock %}
+
+
+{% block obsah %}
+<div class="container">
+<h2 class="text-center mt-5">Zkracovač</h2>
+<div class="form-login mt-5 ">
+<form action="" method="POST">
+    <div class="form-group">
+    <label for="url">Url</label>
+    <input class="form-control" type="text" id="url" name="url"><br>
+    <input class="btn btn-primary" type="Submit" value="Submit">
+</div>
+</form>
+</div>
+{% if shortcut %}
+<p>zkopírovat do schránky:</p>
+<button class="btn btn-secondary" onclick="copyToClipboard('shortcutButton')" id="shortcutButton">{{ shortcut }}</button>
+{% endif %}
+</div>
+{% endblock obsah %}
+

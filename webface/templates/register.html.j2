@@ -5,7 +5,7 @@
 
 {% block obsah %}
 <div class="container">
-<h2 class="text-center mt-5">login</h2>
+<h2 class="text-center mt-5">regsitrace</h2>
 <div class="form-login mt-5 ">
 <form action="{{url_for('register')}}" method="POST">
     <div class="form-group">
@@ -18,6 +18,15 @@
     <input class="btn btn-primary" type="Submit" value="Submit">
 </div>
 </form>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 </div>
 </div>
 {% endblock obsah %}
