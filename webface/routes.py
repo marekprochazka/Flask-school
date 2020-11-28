@@ -5,10 +5,10 @@ from pony.orm import db_session, select
 from .models import User,Shortener
 from werkzeug.security import check_password_hash, generate_password_hash
 from uuid import uuid4
-from .utils import generate_short_url
+from .utils import generate_short_url, add_url_to_shortcut
 
 
-def login_required(fun):
+def login_required(fun): #TODO move to decorators
     @functools.wraps(fun)
     def wrapper(*args, **kwargs):
         if "user" in session:
@@ -22,25 +22,31 @@ def login_required(fun):
 @db_session
 def login():
     if request.method == "POST":
-        if request.form["username"] == "MOTOMOTO":
+        username = request.form.get("username")
+        if username == "MOTOMOTO":
                     return redirect(url_for("moto"))
-        user = User.get(username=request.form.get("username"))
-        if user:
-            if check_password_hash(user.password,request.form.get("password")):
-                session["user"] = user.username
-                url = request.form["url"]
-                if url != "None":
-                    return redirect(url)
-                return redirect(url_for("index"))
+        
+        if username:
+            user = User.get(username=username)
+            if user:
+                if check_password_hash(user.password,request.form.get("password")):
+                    session["user"] = user.username
+                    url = request.form["url"]
+                    if url != "None":
+                        return redirect(url)
+                    return redirect(url_for("index"))
+                else:
+                    session.pop('_flashes', None)
+                    flash("Špatné heslo")
+                    return render_template("login.html.j2", url=request.args.get("url"))
             else:
                 session.pop('_flashes', None)
-                flash("Špatné heslo")
+                flash("Neplatné uživatelské jméno")
                 return render_template("login.html.j2", url=request.args.get("url"))
         else:
             session.pop('_flashes', None)
-            flash("Neplatné uživatelské jméno")
+            flash("Je nutné zadat uživatelské jméno.")
             return render_template("login.html.j2", url=request.args.get("url"))
-        
         
     else:
         return render_template("login.html.j2", url=request.args.get("url"))
@@ -138,15 +144,16 @@ def shortener():
         q = list(select(e for e in Shortener  
                                 if e.url == url ))
         existings = q if q else None
+        print(existings )
         if existings:
             if user:
                 for existing in existings:
                     if existing.user == user:
-                        return render_template("shortener.html.j2",shortcut=existing.shortcut)
+                        return render_template("shortener.html.j2",shortcut=add_url_to_shortcut(existing.shortcut))
                 Shortener(shortened_id=str(uuid4()),shortcut=existing.shortcut,url=url,user=user)
-                return render_template("shortener.html.j2",shortcut=existing.shortcut)
+                return render_template("shortener.html.j2",shortcut=add_url_to_shortcut(existing.shortcut))
             else:
-                    return render_template("shortener.html.j2",shortcut=existing.shortcut)
+                return render_template("shortener.html.j2",shortcut=add_url_to_shortcut(existings[0].shortcut))
 
 
         else:
@@ -157,7 +164,7 @@ def shortener():
                 Shortener(shortened_id=str(uuid4()),shortcut=new_short,url=url,user=user)
             else: 
                 Shortener(shortened_id=str(uuid4()),shortcut=new_short,url=url)
-            return render_template("shortener.html.j2",shortcut=new_short)
+            return render_template("shortener.html.j2",shortcut=add_url_to_shortcut(new_short))
     return render_template("shortener.html.j2")
 
 

@@ -1,5 +1,6 @@
 from random import choice 
 import string
+from flask import request
 
 
 def generate_short_url(existing=[]):
@@ -11,3 +12,5 @@ def generate_short_url(existing=[]):
         result = generate_short_url(existing)
     return result
 
+def add_url_to_shortcut(shortcut):
+    return f"{request.url}{shortcut}"

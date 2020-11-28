@@ -1,9 +1,7 @@
 
 function copyToClipboard(id) {
     let button = document.getElementById(id);
-    let shortcut = button.textContent;
-    let url = window.location.href;
-    let copyText = url+shortcut;
+    let copyText= button.textContent;
     const el = document.createElement('textarea');
     el.value = copyText;
     el.setAttribute('readonly', '');
