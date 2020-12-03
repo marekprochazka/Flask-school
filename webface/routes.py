@@ -171,7 +171,7 @@ def shortener():
 @app.route("/s/<string:short>")
 @db_session
 def shortened(short):
-    if session["user"]:
+    if session.get("user"):
         shortened_object = Shortener.get(shortcut=short,user=User.get(username=session["user"]))
         if not shortened_object:
             shortened_object = Shortener.get(shortcut=short)
