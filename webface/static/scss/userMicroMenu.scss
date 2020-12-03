@@ -1,0 +1,29 @@
+.userMicroMenu--detail {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 200px;
+  height: 300px;
+
+  .userMicroMenu--detail__list {
+    list-style-type: none;
+    li {
+      a {
+        text-decoration: none;
+        color: white;
+        &:hover {
+          color: pink;
+        }
+      }
+    }
+  }
+}
+
+.userMicroMenu {
+  &:hover {
+    .userMicroMenu--detail {
+      display: block;
+    }
+  }
+}

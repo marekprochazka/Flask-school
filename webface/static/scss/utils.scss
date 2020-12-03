@@ -4,6 +4,20 @@
   text-align: center;
 }
 
+.center_text_only {
+  text-align: center;
+}
+
+.left_text_only {
+  text-align: left;
+}
+.mt-15 {
+  margin-top: 15px;
+}
+.ml-40 {
+  margin-left: 40px;
+}
+
 .ml-20 {
   margin-left: 20px;
 }
@@ -11,4 +25,8 @@
 .no-hover:hover {
   text-decoration: none;
   color: white;
+}
+
+.f-20 {
+  font-size: 20px;
 }

@@ -180,3 +180,10 @@ def shortened(short):
     return redirect(shortened_object.url)
     
     
+@app.route("/user")
+def logged_user_detail():
+    return render_template("logged_user_detail.html.j2")
+
+@app.route("/user/shorts")
+def logged_user_shorts():
+    return render_template("logged_user_shorts.html.j2")

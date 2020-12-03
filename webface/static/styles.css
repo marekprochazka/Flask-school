@@ -24,6 +24,22 @@
   text-align: center;
 }
 
+.center_text_only {
+  text-align: center;
+}
+
+.left_text_only {
+  text-align: left;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.ml-40 {
+  margin-left: 40px;
+}
+
 .ml-20 {
   margin-left: 20px;
 }
@@ -31,5 +47,35 @@
 .no-hover:hover {
   text-decoration: none;
   color: white;
+}
+
+.f-20 {
+  font-size: 20px;
+}
+
+.userMicroMenu--detail {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 200px;
+  height: 300px;
+}
+
+.userMicroMenu--detail .userMicroMenu--detail__list {
+  list-style-type: none;
+}
+
+.userMicroMenu--detail .userMicroMenu--detail__list li a {
+  text-decoration: none;
+  color: white;
+}
+
+.userMicroMenu--detail .userMicroMenu--detail__list li a:hover {
+  color: pink;
+}
+
+.userMicroMenu:hover .userMicroMenu--detail {
+  display: block;
 }
 /*# sourceMappingURL=styles.css.map */
