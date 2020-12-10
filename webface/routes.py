@@ -6,7 +6,7 @@ from .models import User,Shortener
 from werkzeug.security import check_password_hash, generate_password_hash
 from uuid import uuid4
 from .utils import generate_short_url, add_url_to_shortcut
-
+import json
 
 def login_required(fun): #TODO move to decorators
     @functools.wraps(fun)
@@ -181,9 +181,15 @@ def shortened(short):
     
     
 @app.route("/user")
+@login_required
 def logged_user_detail():
     return render_template("logged_user_detail.html.j2")
 
 @app.route("/user/shorts")
+@login_required
+@db_session
 def logged_user_shorts():
-    return render_template("logged_user_shorts.html.j2")
+    user = User.get(username=session.get("user"))
+    data = select(short for short in Shortener if short.user==user)
+    shorts = tuple(i.to_dict() for i in data)
+    return render_template("logged_user_shorts.html.j2", shorts=shorts)
